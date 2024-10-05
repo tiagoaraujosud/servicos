@@ -33,4 +33,25 @@ router.get("/:id_servico?", function(req, res, next){
     })
 })
 
+router.post("/?", function(req, res, next){
+
+    PortifolioModel.adicionar(req.body, function(erro, retorno){
+        let resposta = new RespostaClass();
+        if(erro){
+            resposta.erro = true;
+            resposta.msg = 'Ocorreu um erro';
+            console.log('erro', erro)
+        }else{
+            if(retorno.affectedRows > 0){
+                resposta.msg = 'Cadastro realizado com sucesso.';
+            }else{
+                resposta.erro = true;
+                resposta.msg = 'Não foi possível realizar a operação'
+            }
+        }
+        console.log('resp:', resposta);
+        res.json(resposta);
+    })
+})
+
 module.exports = router;
