@@ -14,4 +14,8 @@ module.exports = class PortifolioModel{
            [servicos.date, servicos.cliente, servicos.segurado, servicos.num_assistencia, servicos.bairro, servicos.servico, servicos.serv_status, servicos.consistido, servicos.mao_obra, servicos.material, servicos.TERCEIROS], callback 
         );
     }
+
+    static deletar(id_servico, callback){
+        return db.query("DELETE FROM servicos WHERE id_servico = ?", [id_servico], callback)
+    }
 };

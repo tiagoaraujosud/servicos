@@ -54,4 +54,25 @@ router.post("/?", function(req, res, next){
     })
 })
 
+router.delete("/:id", function(req, res, next){
+
+    PortifolioModel.deletar(req.params.id, function(erro, retorno){
+        let resposta = new RespostaClass();
+        if(erro){
+            resposta.erro = true;
+            resposta.msg = 'Ocorreu um erro';
+            console.log('erro', erro)
+        }else{
+            if(retorno.affectedRows > 0){
+                resposta.msg = 'Registro excluído com sucesso.';
+            }else{
+                resposta.erro = true;
+                resposta.msg = 'Não foi possível excluir o registro'
+            }
+        }
+        console.log('resp:', resposta);
+        res.json(resposta);
+    })
+})
+
 module.exports = router;
