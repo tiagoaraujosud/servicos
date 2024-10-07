@@ -75,4 +75,25 @@ router.delete("/:id", function(req, res, next){
     })
 })
 
+router.put("/", function(req, res, next){
+
+    PortifolioModel.editar(req.body, function(erro, retorno){
+        let resposta = new RespostaClass();
+        if(erro){
+            resposta.erro = true;
+            resposta.msg = 'Ocorreu um erro';
+            console.log('erro', erro)
+        }else{
+            if(retorno.affectedRows > 0){
+                resposta.msg = 'Registro editado com sucesso.';
+            }else{
+                resposta.erro = true;
+                resposta.msg = 'Não foi possível editar o registro'
+            }
+        }
+        console.log('resp:', resposta);
+        res.json(resposta);
+    })
+})
+
 module.exports = router;

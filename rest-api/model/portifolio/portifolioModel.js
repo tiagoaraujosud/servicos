@@ -11,11 +11,15 @@ module.exports = class PortifolioModel{
 
     static adicionar(servicos, callback){
         return db.query("INSERT INTO servicos(data_serv, cliente, segurado, num_assistencia, bairro, servico, serv_status, consistido, mao_obra, material, TERCEIROS) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
-           [servicos.date, servicos.cliente, servicos.segurado, servicos.num_assistencia, servicos.bairro, servicos.servico, servicos.serv_status, servicos.consistido, servicos.mao_obra, servicos.material, servicos.TERCEIROS], callback 
-        );
+           [servicos.date, servicos.cliente, servicos.segurado, servicos.num_assistencia, servicos.bairro, servicos.servico, servicos.serv_status, servicos.consistido, servicos.mao_obra, servicos.material, servicos.TERCEIROS], callback );
     }
 
     static deletar(id_servico, callback){
         return db.query("DELETE FROM servicos WHERE id_servico = ?", [id_servico], callback)
+    }
+
+    static editar(servicos, callback){
+        return db.query("UPDATE servicos SET servico = ?, serv_status = ?, consistido = ?, mao_obra = ?, material = ? WHERE id_servico = ?", 
+            [servicos.servico, servicos.serv_status, servicos.consistido, servicos.mao_obra, servicos.material, servicos.id_servico], callback)
     }
 };
