@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="App">
-      <h1>João Pessoa</h1>
+      <h1>Serviços - João Pessoa</h1>
       <BrowserRouter>
       <Nav justify variant="tabs">
         <Nav.Link as={Link} to="/">Página Inicial</Nav.Link>
