@@ -39,19 +39,21 @@ function Home() {
             <tbody>
                 {data.length > 0 ? (
                     data.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.dados[index].data}</td>
-                            <td>{item.dados[index].cliente || "N/A"}</td>
-                            <td>{item.dados[index].segurado || "N/A"}</td>
-                            <td>{item.dados[index].num_assistencia || "N/A"}</td>
-                            <td>{item.dados[index].bairro || "N/A"}</td>
-                            <td>{item.dados[index].servico || "N/A"}</td>
-                            <td>{item.dados[index].serv_status || "N/A"}</td>
-                            <td>{item.dados[index].consistido || "N/A"}</td>
-                            <td>{item.dados[index].mao_obra || "N/A"}</td>
-                            <td>{item.dados[index].material || "N/A"}</td>
-                            <td>{item.dados[index].TERCEIROS || "N/A"}</td>
-                        </tr>
+                        item.dados.map((dado, dadoIndex) => (
+                            <tr key={`${index}-${dadoIndex}`}>
+                                <td>{dado.data}</td>
+                                <td>{dado.cliente || "N/A"}</td>
+                                <td>{dado.segurado || "N/A"}</td>
+                                <td>{dado.num_assistencia || "N/A"}</td>
+                                <td>{dado.bairro || "N/A"}</td>
+                                <td>{dado.servico || "N/A"}</td>
+                                <td>{dado.serv_status || "N/A"}</td>
+                                <td>{dado.consistido || "N/A"}</td>
+                                <td>{dado.mao_obra || "N/A"}</td>
+                                <td>{dado.material || "N/A"}</td>
+                                <td>{dado.TERCEIROS || "N/A"}</td>
+                            </tr>
+                        ))
                     ))
                 ) : (
                     <tr>
